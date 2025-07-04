@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    input, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="userForm">
+    <h3>User Form</h3>
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="text" id="id" placeholder="ID" required>
+    <input type="text" id="city" placeholder="City" required>
+    <input type="text" id="number" placeholder="Number" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('userForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById('name').value,
+        id: document.getElementById('id').value,
+        city: document.getElementById('city').value,
+        number: document.getElementById('number').value
+      };
+
+      const backendUrl = 'http://localhost:3000/submit';
+
+      try {
+        await fetch(backendUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        alert('Data submitted successfully!');
+        form.reset();
+      } catch (error) {
+        alert('Error submitting data: ' + error.message);
+        console.error(error);
+      }
+    });
+  </script>
+
+
+</body>
+</html>
