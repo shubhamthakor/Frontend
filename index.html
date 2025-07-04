@@ -57,7 +57,8 @@
         number: document.getElementById('number').value
       };
 
-      const backendUrl = 'http://localhost:3000/submit';
+      // Replace with your backend server URL
+      const backendUrl = 'https://backend-q7bi.onrender.com/submit';
 
       try {
         await fetch(backendUrl, {
@@ -70,12 +71,11 @@
         alert('Data submitted successfully!');
         form.reset();
       } catch (error) {
-        alert('Error submitting data: ' + error.message);
+        alert('Error submitting data!');
         console.error(error);
       }
     });
   </script>
-
 
 </body>
 </html>
